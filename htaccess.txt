@@ -14,3 +14,14 @@ AddType application/x-httpd-php .tpl
  Deny from all
 </FilesMatch>
 #
+
+# Redirect from non-www to www
+RewriteEngine on 
+RewriteCond %{HTTP_HOST} !^www\.domain\.xx$ [NC]
+RewriteRule ^(.*)$ http://www.domain.xx/$1 [L,R=301]
+#
+
+# Redirect Tld to another one
+RewriteEngine on
+Redirect 301 / http://www.domain.xx
+#
